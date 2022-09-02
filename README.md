@@ -11,4 +11,4 @@
 
 ## Demo
 
-![Capture](Capture.png)
+![Capture](Images/Capture.png)
