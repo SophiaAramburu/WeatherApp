@@ -11,4 +11,4 @@
 
 ## Demo
 
-![](Assets/Capture.PNG)
+![](./Assets/Capture.PNG)
