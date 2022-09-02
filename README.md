@@ -11,4 +11,4 @@
 
 ## Demo
 
-![Capture](/images/Capture.png)
+![Capture](/Assets/Capture.png)
