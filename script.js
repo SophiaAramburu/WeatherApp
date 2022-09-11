@@ -4,7 +4,7 @@ var btn = document.querySelector("#btn-search");
 // get the reference to the div for the historic cities
 var containerHistoricCities = document.querySelector("#historic-Cities");
 // get the reference to the div for the Current cities
-var containerCurrent = document.querySelector("#targetCity");
+var containerCurrent = document.querySelector("#cityTarget");
 // get the reference to the div for the forecast cities
 var containerForecast = document.querySelector("#infoCity");
 
@@ -81,33 +81,31 @@ var convertWSpeed = function(speed){
     return (Math.floor(parseFloat(speed) * 1.609)).toString();
 };
 
-//function to determine how much intensity is UV Index
 var findUV = function(uv){
 
 
 
     var indexUV = parseFloat(uv);
-    var bgColor;                            // variable to store the background color for each case in UV index
+    var bgColor;                           
     
     if(indexUV < 3){
-        bgColor = "bg-success";             // UV index: 1 - 2  Green
+        bgColor = "bg-success";            
     }
     else if( indexUV < 6){
-            bgColor = "bg-warning";         // UV index: 3 - 5  Yellow
+            bgColor = "bg-warning";        
         }
         else if(indexUV < 8){
-                bgColor = "bg-danger";      // UV index: 6 - 7  Red
+                bgColor = "bg-danger";     
             }
             else {
-                    bgColor = "bg-dark";    // UV index: 8 - 10 and 11+ Black
+                    bgColor = "bg-dark";    
             }
     return bgColor;
 };
 
-// showing the information about the weather stored in the array of object weatherCondition
 var weatherHTML = function (city, uv) {
 
-    //cleaning  the containers 
+    //cleaning containers 
     cleaningElement(containerCurrent);
     cleaningElement(containerForecast); 
 
@@ -275,9 +273,9 @@ var callApiFetch = function(city){
 
     var url;
     if (location.protocol === 'http:') {
-        url = 'http://api.openweathermap.org/data/2.5/forecast?appid=b262298fbe39ad30d243f31f6e1297bc&units=imperial&q='+city;
+        url = 'http://api.openweathermap.org/data/2.5/forecast?appid=1c7dde8711996495ddbd1f19d2d4253c&units=imperial&q='+city;
      } else {
-        url = 'https://api.openweathermap.org/data/2.5/forecast?appid=b262298fbe39ad30d243f31f6e1297bc&units=imperial&q='+city;
+        url = 'https://api.openweathermap.org/data/2.5/forecast?appid=1c7dde8711996495ddbd1f19d2d4253c&units=imperial&q='+city;
      }
 
     fetch(url)
@@ -299,9 +297,9 @@ var callApiFetch = function(city){
 
             var url1;
         if (location.protocol === 'http:') {
-            url1 = 'http://api.openweathermap.org/data/2.5/uvi?appid=b262298fbe39ad30d243f31f6e1297bc&lat='+weatherCondition[0].lat+'&lon='+weatherCondition[0].lon;
+            url1 = 'http://api.openweathermap.org/data/2.5/uvi?appid=1c7dde8711996495ddbd1f19d2d4253c&lat='+weatherCondition[0].lat+'&lon='+weatherCondition[0].lon;
         } else {
-            url1 = 'https://api.openweathermap.org/data/2.5/uvi?appid=b262298fbe39ad30d243f31f6e1297bc&lat='+weatherCondition[0].lat+'&lon='+weatherCondition[0].lon;
+            url1 = 'https://api.openweathermap.org/data/2.5/uvi?appid=1c7dde8711996495ddbd1f19d2d4253c&lat='+weatherCondition[0].lat+'&lon='+weatherCondition[0].lon;
         }
 
         fetch(url1)
@@ -311,22 +309,21 @@ var callApiFetch = function(city){
         })
         .then(function(uvResponse) {
 
-          if (!uvResponse) {   //verify the information
+          if (!uvResponse) { 
             displayAlertMessage('OpenWeathermap.org could not find anything for latitude and Longitude');
 
             return;
           } else {
 
-            //store the city in localStore
+        
             saveCity(city);
 
-            // generation the HTML for weather
             weatherHTML(city, uvResponse.value);
           }
         })
     })
         .catch(function(error) {
-            // if there is a problen to connect to OpenWeathermap.org
+            // if there is a problem
             displayAlertMessage("Unable to connect to OpenWeathermap.org");
             return;
           });
@@ -337,7 +334,7 @@ var search = function(event){
     event.preventDefault();
 
     //getting the value of the input
-    var inputElement = document.querySelector("#searchCity");
+    var inputElement = document.querySelector("citySearch");
     var textInput = inputElement.value.trim();
 
     if(inputElement.value === ""){
