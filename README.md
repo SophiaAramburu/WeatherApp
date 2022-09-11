@@ -11,4 +11,4 @@
 
 ## Demo
 
-![](WeatherApp/WeatherApp/Capture.PNG)
+![Capture](/Assets/Capture.png)
