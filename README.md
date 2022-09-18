@@ -10,5 +10,4 @@
 
 
 ## Demo
-
-![Capture](/WeatherApp/WeatherApp/Assets/Capture.png)
+![alt text](assets/images/screenshot.png)
