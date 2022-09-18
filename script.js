@@ -1,23 +1,11 @@
 
-// Get references to the #btn and input element
 var btn = document.querySelector("#btn-search");
-// get the reference to the div for the historic cities
 var containerHistoricCities = document.querySelector("#historic-Cities");
-// get the reference to the div for the Current cities
 var containerCurrent = document.querySelector("#cityTarget");
-// get the reference to the div for the forecast cities
 var containerForecast = document.querySelector("#infoCity");
 
 //Array of Objects for localStores data
 var dataStore = JSON.parse(localStorage.getItem('cities')) || [];
-
-var urlIcon;
-    if (location.protocol === 'http:') {
-        urlIcon = 'http://openweathermap.org/img/wn/';
-     } else {
-        urlIcon = 'https://openweathermap.org/img/wn/';
-     }
-
 
 // Objetc for Weather conditions for a city
 var weatherCondition = [];
@@ -152,12 +140,12 @@ var weatherHTML = function (city, uv) {
     for(var i=1; i<weatherCondition.length; i++){    
         
         var ctn4  = document.createElement("div"); // div for the boostrap card
-        //ctn4.classList.add("col-2"); // class from bootstrap
-        ctn4.classList.add("card"); // class from bootstrap
-        ctn4.classList.add("bg-primary"); // class from bootstrap
-        ctn4.classList.add("text-white"); // class from bootstrap
-        ctn4.classList.add("rounded"); // class from bootstrap
-        ctn4.classList.add("mr-2"); // class from bootstrap
+        //ctn4.classList.add("col-2"); // 
+        ctn4.classList.add("card"); // 
+        ctn4.classList.add("bg-primary"); 
+        ctn4.classList.add("text-white");
+        ctn4.classList.add("rounded"); 
+        ctn4.classList.add("mr-2");
         ctn4.classList.add("flex-fill")
         var ctn5  = document.createElement("div");      
         ctn5.classList.add("card-body");
@@ -271,13 +259,6 @@ var displayAlertMessage = function(msg) {
 // function to retrieve to information about the weather
 var callApiFetch = function(city){
 
-    var url;
-    if (location.protocol === 'http:') {
-        url = 'http://api.openweathermap.org/data/2.5/forecast?appid=1c7dde8711996495ddbd1f19d2d4253c&units=imperial&q='+city;
-     } else {
-        url = 'https://api.openweathermap.org/data/2.5/forecast?appid=1c7dde8711996495ddbd1f19d2d4253c&units=imperial&q='+city;
-     }
-
     fetch(url)
 
     .then(function(weatherResponse) {
@@ -295,12 +276,7 @@ var callApiFetch = function(city){
                 createDataObject(weatherResponse.list, weatherResponse.city.coord);
             }
 
-            var url1;
-        if (location.protocol === 'http:') {
-            url1 = 'http://api.openweathermap.org/data/2.5/uvi?appid=1c7dde8711996495ddbd1f19d2d4253c&lat='+weatherCondition[0].lat+'&lon='+weatherCondition[0].lon;
-        } else {
-            url1 = 'https://api.openweathermap.org/data/2.5/uvi?appid=1c7dde8711996495ddbd1f19d2d4253c&lat='+weatherCondition[0].lat+'&lon='+weatherCondition[0].lon;
-        }
+        
 
         fetch(url1)
 
